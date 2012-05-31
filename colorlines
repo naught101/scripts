@@ -1,0 +1,8 @@
+#!/bin/bash
+while read line;
+do
+  echo -e '\e[0;37m'$line;
+  read line;
+  echo -e '\e[0;33m'$line'\e[0m';
+done
+echo -en '\e[0m';

@@ -1,0 +1,3 @@
+#! /bin/bash
+
+python /home/files/downloads/software/skysentials-1.0.1/skysentials.py $1

@@ -1,0 +1,35 @@
+#!/bin/bash
+#switch file1 for file2
+
+file1=$1
+file2=$2
+
+if [ $# -ne 2 ]; then
+  echo "usage: $0 file1 file2"
+  exit 1
+fi
+
+if [ ! -e $file1 ]; then
+  echo "Error: $file1 does not exist!"
+  exit 2
+fi
+
+if [ ! -w $file1 ]; then
+  echo "Error: $file1 is not writable!"
+  exit 2
+fi
+
+if [ ! -e $file2 ]; then
+  echo "Error: $file2 does not exist!"
+  exit 2
+fi
+
+if [ ! -w $file2 ]; then
+  echo "Error: $file2 is not writable!"
+  exit 2
+fi
+
+mv $file1 ${file1}.temp
+mv $file2 $file1
+mv ${file1}.temp $file2
+

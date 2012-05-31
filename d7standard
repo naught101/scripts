@@ -1,0 +1,8 @@
+#!/bin/bash
+
+drush dl -y views admin_menu ctools linkit media pathauto token wysiwyg
+#drush si -y --account-pass=admin
+drush dis toolbar -y
+drush en -y admin_menu views_ui linkit media pathauto wysiwyg zen
+
+

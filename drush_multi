@@ -1,0 +1,37 @@
+#!/bin/bash
+#Script for running drush on ALL sites in a multi-site directory. BEWARE.
+
+which drush
+if [ $? -ne 0 ]; then
+  echo "Drush executable not found in your path."
+  exit 1
+fi
+
+basedir=./
+
+while getopts "d:" o; do
+case $o in 
+  d) basedir=$OPTARG
+esac
+done
+
+shift \`echo $OPTIND-1 | bc\`
+commands=$@
+
+cd $basedir
+
+if [ $# -lt 1 ]; then
+  echo Usage: drush_multi [-d base_directory] drush_command
+  echo eg: drush_multi -d /var/www/drupal modulestatus
+  echo Run drush --help for more info.
+  exit 2
+fi
+
+echo -n "Are you absolutely sure you want to run 'drush $@' on ALL your sites in \`pwd\`/sites/? (y/N): " 
+read check
+if [ $check != 'yes' -a $check != 'y' ]; then
+  echo "Quitting."
+  exit 3
+fi
+
+find sites/ -maxdepth 1 -mindepth 1 -type d -not -name all | sed 's/.*\///g'|xargs -I site_dir -0 -t drush -l site_dir $commands

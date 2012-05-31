@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Convert mp3 files to flac
+#
+
+if [ $# -lt 1 ]; then
+  echo 'Usage: mp32flac [file(s)]'
+  exit 2
+fi
+
+for file in "$@"; do
+  echo converting $file
+  flacfile=`basename $file .mp3`.flac
+  mp3-decoder -s | flac -8 --force-raw-format -o $flacfile -
+done

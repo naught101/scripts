@@ -1,0 +1,7 @@
+#!/bin/bash
+# Map wacom to a single screen
+
+xsetwacom set "Wacom Bamboo pad" "MapToOutput" VGA1
+xsetwacom set "Wacom Bamboo cursor" "MapToOutput" VGA1
+xsetwacom set "Wacom Bamboo stylus" "MapToOutput" VGA1
+xsetwacom set "Wacom Bamboo eraser" "MapToOutput" VGA1

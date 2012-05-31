@@ -1,0 +1,5 @@
+#!/bin/bash
+
+kquitapp plasma-desktop
+kbuildsyscoa4
+kstart plasma-desktop

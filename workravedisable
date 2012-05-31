@@ -1,0 +1,5 @@
+#!/bin/bash
+
+killall workrave
+sleep 1h
+workrave

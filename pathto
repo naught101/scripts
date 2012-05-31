@@ -1,0 +1,25 @@
+#!/bin/bash
+# get the full path to a directory or file. Useful if readlink -m doesn't exist on your system.
+
+if [ $# -ne 1 ]; then
+	echo "Usage: $0 file"
+	exit 1
+fi
+
+#cd `echo $1 | sed "s/(.*\/)(?=[^\/])/&/"`
+if [ -d $1 ]; then 
+  cd $1
+  pwd
+elif [ -a $1 ]; then
+  dir=`echo $1 | sed 's/[^\/]*$//'`
+  file=`echo $1 | sed 's/([^\/]*\/)*//'`
+  if [[ -z $dir ]]; then 
+    dir="." 
+  fi
+  echo dir $dir
+  echo file $file
+  cd $dir
+  echo `pwd`/$file
+else
+ echo "No such file."
+fi
